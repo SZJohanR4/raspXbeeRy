@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+
+    <title>Info Getway | RaspXbeeRy</title>
+  </head>
+
+  <body>
+    {% include "navigationbar.html" %}
+</br>
+</br>
+</br>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+         <div class="sidebar-sticky">
+           <ul class="nav flex-column">
+             <li class="nav-item">
+               <a class="nav-link active" href="#">
+                 <span data-feather="git-merge"></span>
+                 Info Sensor
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="target"></span>
+                 Log Sensor
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="map"></span>
+                 Mapa Sensores
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="git-pull-request"></span>
+                 Nodos Conectados
+               </a>
+             </li>
+           </ul>
+
+           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+             <span>Perfil</span>
+           </h6>
+           <ul class="nav flex-column mb-2">
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="user"></span>
+                 Mi Perfil
+               </a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+
+        <main class="col-md-10 offset-md-2 pt-3">
+          <h1>Sensores Info</h1>
+          <br>
+          <form >
+            <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="inputState">Ascii Id:</label>
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                  </div>
+                  <div class="form-group col-md-3">
+                        <label for="inputState">Fields:</label>
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="inputState">Type: </label>
+                      <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                    </div>
+                  <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary" style="margin-top:28px;">Agregar</button>
+                  </div>
+            </div>
+          </form>
+<br>
+<br>
+        <h3>Standar</h3>
+        <br>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Asscii Id</th>
+                  <th scope="col">Fields</th>
+                  <th scope="col">Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>val Pueba corto</td>
+                  <td>--------------val Pueba medio----------------</td>
+                  <td>-----------------------------val Pueba long--------------------------</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>val Pueba corto</td>
+                  <td>--------------val Pueba medio----------------</td>
+                  <td>-----------------------------val Pueba long--------------------------</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- Icons -->
+      <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+      <script>
+        feather.replace()
+      </script>
+  </body>
+</html>

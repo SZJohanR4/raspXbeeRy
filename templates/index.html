@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <title>Control RaspXbee</title>
+  </head>
+  <body>
+    {% include "navigationbar.html" %}
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                    </div>
+                    <div class="modal-body">
+                       <div class="container">
+                         <form method="POST" action="/login/">
+                          {% csrf_token %}
+                            <div class="form-group">
+                              <label for="usuario">Usuario:</label>
+                              {{form.user_name}}
+                            </div>
+                            <div class="form-group">
+                              <label for="password">Contraseña:</label>
+                              {{form.password}}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Ingresar">
+                            </div>
+                            {{fail}}
+                        </form>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <main role="main">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">RaspXbee Control Panel</h1>
+          <p>Permitimos el monitoreo constante por medio de sensores ubicados estrategicamente en las riveras del rio para desarrollar un modelo de prediccion sobre el posible comportamiento del afluente.</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Probar &raquo;</a></p>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center"  style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/LogoProyecto.png' %}" alt="Logo ">
+              <div class="card-body">
+                <h2 class="card-title">Proyecto</h2>
+                <p class="card-text">Un proyecto desarrollado con la universidad Minuto de Dios y su semillero Codigo Enigma, el cual es dirigido por el Maestro Carlos Sierra.</p>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/LogoUniminuto.png' %}" alt="Logo Uniminuto">
+              <div class="card-body">
+                <h2 class="card-title">Uniminuto</h2>
+                <p class="card-text">Proveer a las comunidades educativas y de base de las distintas regiones colombianas,del conocimiento que su desarrollo integral demande, mediante la ejecución de la investigación, el desarrollo tecnológico y la innovación.</p>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/LogoSemillero.png' %}" alt="Logo Semillero">
+              <div class="card-body">
+                <h2 class="card-title">Codigo Enigma</h2>
+                <p class="card-text">Un semillero posicionado al interior de la facultad, con claras fortalezas en computación, proyectos en desarrollo, y resultados de investigación divulgados.</p>
+              </div>
+           </div>
+          </div>
+        </div>
+
+
+      </div> <!-- /container -->
+    </main>
+    <script type="text/javascript">
+        function showLoginModal() {
+            $("#loginModal").modal('show');
+        }
+    </script>
+  </body>
+</html>

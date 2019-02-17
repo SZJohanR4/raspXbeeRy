@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+
+    <title>Cloud Conexion | RaspXbeeRy</title>
+  </head>
+
+  <body>
+    {% include "navigationbar.html" %}
+</br>
+</br>
+</br>
+    <div class="container-fluid">
+      <div class="row">
+        {% include "CloudConnector/sidebar_cloudConector.html" %}
+        <main class="col-md-10 offset-md-2 pt-3">
+          <h1>Formulario</h1>
+          <form >
+
+            <div class="row">
+               <div class="form-group col-md-5">
+                  <label for="inputState">Nombre:</label>
+                      <input type="text" class="form-control" id="inputnombre" placeholder="Nombre">
+                </div>
+               <div class="form-group col-md-2 ">
+              <label for="inputState">Elija un Tipo de dato</label>
+                <select id="inputState" class="form-control">
+                  <option selected>STRING</option>
+                  <option>INT</option>
+                </select>
+            </div>
+                <div class="form-group col-md-5">
+                  <label for="inputState">Nombre de servidor:</label>
+                      <input type="text" class="form-control" id="inputserver" placeholder="Servidor">
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </main>
+      </div>
+    </div>
+    <!-- Icons -->
+      <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+      <script>
+        feather.replace()
+      </script>
+  </body>
+</html>

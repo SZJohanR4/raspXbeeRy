@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+
+    <title>Add Delete Tabla | RaspXbeeRy</title>
+  </head>
+
+  <body>
+    {% include "navigationbar.html" %}
+</br>
+</br>
+</br>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+         <div class="sidebar-sticky">
+           <ul class="nav flex-column">
+             <li class="nav-item">
+               <a class="nav-link " href="#">
+                 <span data-feather="disc"></span>
+                 Consultar Data
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link active" href="#">
+                 <span data-feather="database"></span>
+                 Tablas Admin
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="clock"></span>
+              Synchronization DB
+               </a>
+             </li>
+           </ul>
+
+           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+             <span>Perfil</span>
+           </h6>
+           <ul class="nav flex-column mb-2">
+             <li class="nav-item">
+               <a class="nav-link" href="#">
+                 <span data-feather="user"></span>
+                 Mi Perfil
+               </a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+
+        <main class="col-md-10 offset-md-2 pt-3">
+          <h3>Administrar tablas</h3 >
+agregar form para agregar o eliminar tablas
+        </main>
+      </div>
+    </div>
+    <!-- Icons -->
+      <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+      <script>
+        feather.replace()
+      </script>
+  </body>
+</html>
