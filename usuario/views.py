@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import loginForm
@@ -26,3 +27,7 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+@login_required(login_url='/')
+def userPerfil(request):
+    return render(request,'Usuario/perfil.html')

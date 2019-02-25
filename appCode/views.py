@@ -10,29 +10,71 @@ import serial #pip install pyserial
 def index(request):
     return render(request,'index.html',{"form":loginForm})
 
+#conexiones views
 @login_required(login_url='/')
 def conexiones(request):
     return render(request,'Conexiones/conexionEthernet.html')
 
 @login_required(login_url='/')
+def conexionesWifi(request):
+    return render(request,'Conexiones/conexionWifiAp.html')
+
+@login_required(login_url='/')
+def conexionesClients(request):
+    return render(request,'Conexiones/conexionClientsConnected.html')
+
+@login_required(login_url='/')
+def conexionesGPRS(request):
+    return render(request,'Conexiones/conexionGPRS.html')
+
+#red views
+@login_required(login_url='/')
 def red(request):
     return render(request,'Red/infGateway.html')
 
 @login_required(login_url='/')
-def cloud_conector(request):
+def sensorLog(request):
+    return render(request,'Red/logGetway.html')
+
+@login_required(login_url='/')
+def sensorMap(request):
+    return render(request,'Red/mapaSensores.html')
+
+@login_required(login_url='/')
+def nodosConectados(request):
+    return render(request,'Red/nodosConectados.html')
+
+#cloud_conector views
+@login_required(login_url='/')
+def cloudConector(request):
     return render(request,'CloudConnector/cloudConnector.html')
 
+#herramientas views
 @login_required(login_url='/')
 def herramientas(request):
     return render(request,'Herramientas/ping.html')
 
 @login_required(login_url='/')
+def tracer(request):
+    return render(request,'Herramientas/tracerRoute.html')
+
+#sistema views
+@login_required(login_url='/')
 def sistema(request):
     return render(request,'Sistema/onOffSistema.html')
 
+#data views
 @login_required(login_url='/')
 def data(request):
+    return render(request,'Data/consultarDB.html')
+
+@login_required(login_url='/')
+def adminTablas(request):
     return render(request,'Data/adminTablas.html')
+
+@login_required(login_url='/')
+def sync(request):
+    return render(request,'Data/sincronizarDB.html')
 
 @login_required(login_url='/')
 def consola(request):
