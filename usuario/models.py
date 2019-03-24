@@ -1,30 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
-from appCode.models import SimCard, Ethernet, Wifi
+from appCode.models import Simcard, Ethernet, Wifi
 
-class Usuario(models.Model):
-    Nombre=models.OneToOneField(User, on_delete=models.CASCADE)
-    Password=models.CharField(max_length=50)
-    Email=models.EmailField(max_length=50)
+############################# User Model #############################
+class User_App(models.Model):
+    nickname = models.OneToOneField(User, on_delete = models.CASCADE)
+    password = models.CharField(max_length = 50)
+    email = models.EmailField(max_length = 50)
+    phone = models.CharField(max_length = 15)
 
     def __str__(self):
-        return self.Nombre
+        return ("Nickname: %s\tPassword: %s\tEmail: %s\tPhone: %s\n" % (self.nickname, self.password, self.email, self.phone))
 
+
+
+
+############################# Log Model #############################
+class Action_Log(models.Model):
+    name = models.CharField(max_length = 25)
+    description = models.CharField(max_length = 100)
+    
 
 class Log(models.Model):
-    Accion=models.CharField(max_length=50)
-    Fecha=models.CharField(max_length=50)
-    Donde=models.CharField(max_length=50)
-
-    FK_idUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    action = models.ForeignKey(Action_Log, on_delete = models.CASCADE)
+    date_log = models.DateTimeField(auto_now = True)
+    user_fk = models.ForeignKey(User_App, on_delete = models.CASCADE)
+    
     def __str__(self):
-        return self.Date
+        return ("Action: %s\tDate: %s\tUsuario: %s\n" % (self.action, self.date_log, self.user_fk))
 
 
-class Conexion(models.Model):
-    Fecha=models.CharField(max_length=50)
 
-    FK_idUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    FK_idSimCard=models.ForeignKey(SimCard, on_delete=models.CASCADE)
-    FK_idEthernet=models.ForeignKey(Ethernet, on_delete=models.CASCADE)
-    FK_idWifi=models.ForeignKey(Wifi, on_delete=models.CASCADE)
+
+############################# Conection Model #############################
+class Conection(models.Model):
+    date_conn = models.DateTimeField(auto_now = True)
+    usuario_fk = models.ForeignKey(User_App, on_delete = models.CASCADE)
+    simcard_fk = models.ForeignKey(Simcard, on_delete = models.CASCADE)
+    ethernet_fk = models.ForeignKey(Ethernet, on_delete = models.CASCADE)
+    wifi_fk = models.ForeignKey(Wifi, on_delete = models.CASCADE)

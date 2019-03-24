@@ -25,7 +25,7 @@ SECRET_KEY = '9hnths)w)b4f*b$!g3ct0sy6f3ivqv0y27jkhhk9#-&8jnbpne'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'raspXbeeDB',
         'USER': 'postgres',
-        'PASSWORD': 'uniminuto',
+        'PASSWORD': 'postgres',
         'HOST':'127.0.0.1',
         'PORT': 5432,
     }
@@ -126,6 +126,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static")
-]
+STATICFILES_DIRS = [  os.path.join(BASE_DIR, "static")  ]
