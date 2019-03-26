@@ -9,10 +9,10 @@ urlpatterns = [
 
     #conexiones paths
     path('conexiones/', views.conexiones, name='conexiones'),
-    path('conexiones/ethernet', views.conexiones, name='conexiones'),
-    path('conexiones/wifi', views.conexionesWifi, name='conexionesWifi'),
-    path('conexiones/clients', views.conexionesClients, name='conexionesClients'),
-    path('conexiones/gprs', views.conexionesGPRS, name='conexionesGPRS'),
+    path('conexiones/ethernet', views.conexiones, name='conexiones_ethernet'),
+    path('conexiones/wifi', views.conexionesWifi, name='conexiones_wifi'),
+    path('conexiones/clients', views.conexionesClients, name='conexiones_clients'),
+    path('conexiones/gprs', views.conexionesGPRS, name='conexiones_gprs'),
 
     #red paths
     path('red/', views.red, name='red'),
