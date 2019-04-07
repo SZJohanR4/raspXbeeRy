@@ -18,7 +18,7 @@ urlpatterns = [
     path('red/', views.red, name='red'),
     path('red/sensor_inf', views.red, name='sensor_inf'),
     path('red/sensor_log', views.sensorLog, name='sensorLog'),
-    path('red/sensor_map/', views.sensorMap, name='sensorMap'),
+    path('red/sensor_mp', views.sensorMap, name='sensorMap'),
     path('red/nodos_conectados', views.nodosConectados, name='nodosConectados'),
 
     #cloud conector paths

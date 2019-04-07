@@ -23,47 +23,44 @@
 
         <main class="col-md-10 offset-md-2 pt-3">
           <h1>Wifi Ap Conexion</h1>
-          <form >
+          <form method="POST" action="/login/">
+           {% csrf_token %}
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Address:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
-                </div>
-                <div class="form-group col-md-5">
-                  <label for="inputState">DHCP start alert to address:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.address}}
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Netmask:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.netmask}}
                 </div>
                 <div class="form-group col-md-5">
                   <label for="inputState">DHCP end alert to address:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.end_alert_to_address}}
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Broadcast:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.broadcast}}
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Primary DNS:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.primary_dns}}
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Seccondary DNS:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                     {{form.secondary_dns}}
                 </div>
               </div>
               </form>
@@ -75,31 +72,17 @@
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">ESSID</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.essid}}
                 </div>
                 <div class="form-group col-md-5">
                   <label for="inputState">Channel: </label>
-                    <select id="inputState" class="form-control">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
+                  {{form.channel}}
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Protocol: </label>
-                    <select id="inputState" class="form-control">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                    </select>
+                    {{form.protocol}}
                 </div>
               </div>
           </form>
@@ -111,10 +94,7 @@
           <div class="row">
             <div class="form-group col-md-5">
               <label for="inputState">Protocol: </label>
-                <select id="inputState" class="form-control">
-                  <option selected>Wpa</option>
-                  <option>None</option>
-                </select>
+                {{form.security_protocolo}}
             </div>
           </div>
           </form>

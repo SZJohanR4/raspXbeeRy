@@ -2,7 +2,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from .forms import loginForm
+from .forms import CloudForm
+from .forms import ethernetConexForm
+from .forms import gprsConexForm
+from .forms import pingToolForm 
+from .forms import sensorRedForm
+from .forms import tracerToolForm
+from .forms import wifiConexForm
+from .forms import ziggbeeRedForm
+from usuario.forms import loginForm
 import serial #pip install pyserial
 
 
@@ -13,11 +21,11 @@ def index(request):
 #conexiones views
 @login_required(login_url='/')
 def conexiones(request):
-    return render(request,'Conexiones/conexionEthernet.html')
+    return render(request,'Conexiones/conexionEthernet.html',{"form":ethernetConexForm})
 
 @login_required(login_url='/')
 def conexionesWifi(request):
-    return render(request,'Conexiones/conexionWifiAp.html')
+    return render(request,'Conexiones/conexionWifiAp.html',{"form":wifiConexForm})
 
 @login_required(login_url='/')
 def conexionesClients(request):
@@ -25,16 +33,16 @@ def conexionesClients(request):
 
 @login_required(login_url='/')
 def conexionesGPRS(request):
-    return render(request,'Conexiones/conexionGPRS.html')
+    return render(request,'Conexiones/conexionGPRS.html',{"form":gprsConexForm})
 
 #red views
 @login_required(login_url='/')
 def red(request):
-    return render(request,'Red/infGateway.html')
+    return render(request,'Red/infGateway.html',{"form":sensorRedForm})
 
 @login_required(login_url='/')
 def sensorLog(request):
-    return render(request,'Red/logGetway.html')
+    return render(request,'Red/logGetway.html',{"form":ziggbeeRedForm})
 
 @login_required(login_url='/')
 def sensorMap(request):
@@ -47,16 +55,16 @@ def nodosConectados(request):
 #cloud_conector views
 @login_required(login_url='/')
 def cloudConector(request):
-    return render(request,'CloudConnector/cloudConnector.html')
+    return render(request,'CloudConnector/cloudConnector.html',{"form":CloudForm})
 
 #herramientas views
 @login_required(login_url='/')
 def herramientas(request):
-    return render(request,'Herramientas/ping.html')
+    return render(request,'Herramientas/ping.html',{"form":pingToolForm})
 
 @login_required(login_url='/')
 def tracer(request):
-    return render(request,'Herramientas/tracerRoute.html')
+    return render(request,'Herramientas/tracerRoute.html',{"form":tracerToolForm})
 
 #sistema views
 @login_required(login_url='/')

@@ -24,16 +24,14 @@
 
         <main class="col-md-10 offset-md-2 pt-3">
           <h1>Ethernet Conexion</h1>
-          <form >
+          <form method="POST">
+            {% csrf_token %}
             <div class="form-group col-md-2 ">
               <label for="inputState">Elija un Metodo de Ip</label>
-                <select id="inputState" class="form-control">
-                  <option selected>DHCP</option>
-                  <option>TCP</option>
-                </select>
+              {{form.type_conex}}
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+              {{form.show_info}}
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
           </form>

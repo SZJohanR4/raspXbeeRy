@@ -16,7 +16,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                        <h5 class="modal-title">Login</h5>
                     </div>
                     <div class="modal-body">
                        <div class="container">
@@ -40,6 +40,7 @@
                 </div>
             </div>
         </div>
+
     <main role="main">
       <div class="jumbotron">
         <div class="container">
@@ -88,5 +89,13 @@
             $("#loginModal").modal('show');
         }
     </script>
+    
+    {% if fail %}
+    <script type="text/javascript">
+      $( document ).ready(function() {
+          $("#loginModal").modal('show');
+      });
+    </script>
+    {% endif %}
   </body>
 </html>

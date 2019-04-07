@@ -27,35 +27,27 @@
             <div class="row">
               <div class="form-group col-md-5">
                 <label for="inputState">Choose Operator: </label>
-                  <select id="inputState" class="form-control">
-                    <option selected>----</option>
-                    <option>Claro</option>
-                    <option>Movistar</option>
-                    <option>Virgin</option>
-                    <option>Avantel</option>
-                    <option>Exito</option>
-                    <option>Tigo</option>
-                  </select>
+                  {{form.operator}}
               </div>
             </div>
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="inputState">Card Pin:</label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                    {{form.card_pin}}
                       <span> Leave it empty for no PIN</span>
                 </div>
               </div>
                 <div class="row">
                   <div class="form-group col-md-5">
                     <label for="inputState">Username:</label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.username}}
                         <span>Should be provided by your operator</span>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-5">
                     <label for="inputState">Password:</label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="Mostrar Info">
+                      {{form.password}}
                         <span>Should be provided by your operator</span>
                   </div>
                 </div>
