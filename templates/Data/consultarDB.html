@@ -23,37 +23,45 @@
         <main class="col-md-10 offset-md-2 pt-3">
           <h1>Consultar datos</h1>
           <br>
-          <form >
+          <form method="POST" >
+            {% csrf_token %}
             <div class="row">
                   <div class="form-group col-md-3">
                     <label for="inputState">Data Base:</label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                    {{form.data_Base}}
+
                   </div>
                   <div class="form-group col-md-3">
                         <label for="inputState">Table: </label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                        {{form.Table}}
+
                   </div>
                   <div class="form-group col-md-3">
                       <label for="inputState">Ip: </label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                      {{form.IP}}
+
                     </div>
                   <div class="form-group col-md-2">
                     <label for="inputState">Show Data:</label>
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                    {{form.Show_Data}}
+
                   </div>
             </div>
             <div class="row">
                   <div class="form-group col-md-3">
                     <label for="inputState">Port:</label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                    {{form.Port}}
+
                   </div>
                   <div class="form-group col-md-3">
                         <label for="inputState">User: </label>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                        {{form.User}}
+
                 </div>
                 <div class="form-group col-md-3">
                       <label for="inputState">Password: </label>
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                      {{form.Pass}}
+
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Consultar</button>

@@ -5,11 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import CloudForm
 from .forms import ethernetConexForm
 from .forms import gprsConexForm
-from .forms import pingToolForm 
+from .forms import pingToolForm
 from .forms import sensorRedForm
 from .forms import tracerToolForm
 from .forms import wifiConexForm
 from .forms import ziggbeeRedForm
+from .forms import searchdataForm
+from .forms import DateForm
 from usuario.forms import loginForm
 import serial #pip install pyserial
 
@@ -74,7 +76,7 @@ def sistema(request):
 #data views
 @login_required(login_url='/')
 def data(request):
-    return render(request,'Data/consultarDB.html')
+    return render(request,'Data/consultarDB.html',{"form":searchdataForm})
 
 @login_required(login_url='/')
 def adminTablas(request):
@@ -82,7 +84,7 @@ def adminTablas(request):
 
 @login_required(login_url='/')
 def sync(request):
-    return render(request,'Data/sincronizarDB.html')
+    return render(request,'Data/sincronizarDB.html',{"form":DateForm})
 
 @login_required(login_url='/')
 def consola(request):
