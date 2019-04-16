@@ -53,8 +53,6 @@ class pingToolForm(forms.Form):
     host=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'host', 'placeholder':'Mostrar info'}))
     interface=forms.ChoiceField(choices = INTERFACES_CHOICES, required=True, widget=forms.Select(attrs={'class':'form-control', 'id':'interface'}))
 
-
-
 class tracerToolForm(forms.Form):
     INTERFACES_CHOICES = (('Ethernet IPv4', 'Ethernet IPv4'),('Wifi', 'Wifi'),('Gprs', 'GPRS'))
     host=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'host', 'placeholder':'Mostrar info'}))
@@ -65,12 +63,8 @@ class DateForm(forms.Form):
     Select=forms.ChoiceField( required=True, widget=forms.Select(attrs={'class':'form-control'}))
     Dates=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'Dates', 'placeholder':'Fecha'}))
 
-
-
-
 #Data forms
 class searchdataForm(forms.Form):
-
     data_Base=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'data_Base', 'placeholder':'Base de datos'}))
     Table=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'Table', 'placeholder':'Tablas'}))
     IP=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'IP', 'placeholder':'IP'}))

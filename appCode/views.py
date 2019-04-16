@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .forms import CloudForm
+from .forms import DateForm
 from .forms import ethernetConexForm
 from .forms import gprsConexForm
 from .forms import pingToolForm
@@ -11,7 +12,6 @@ from .forms import tracerToolForm
 from .forms import wifiConexForm
 from .forms import ziggbeeRedForm
 from .forms import searchdataForm
-from .forms import DateForm
 from usuario.forms import loginForm
 import serial #pip install pyserial
 
