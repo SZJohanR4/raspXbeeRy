@@ -3,7 +3,6 @@
 __pycache__
 dev_env
 db.sqlite3
-/static
 .DS_Store
 .project
 .pydevproject

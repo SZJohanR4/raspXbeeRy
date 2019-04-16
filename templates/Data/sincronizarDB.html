@@ -1,70 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="{% static 'js/DataLibrary/jquery-3.3.1.min.js' %}"></script>
 
+<head>
+  <meta charset="utf-8">
+  {% load static %}
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'js/DataLibrary/gijgo.min.js' %}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <!-- date jquery-->
+  <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <!--link href="{% static 'css/DataLibrary/gijgo.min.css' %}" rel="stylesheet" type="text/css" /-->
+  <script type="text/javascript" src="{% static 'js/DataLibrary/jquery-1.11.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/DataLibrary/gijgo.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/timezones.full.js' %}"></script>
 
+  <title>Sincronizar | RaspXbeeRy</title>
+</head>
 
-
-
-    <title>Sincronizar | RaspXbeeRy</title>
-  </head>
-
-  <body>
-    {% include "navigationbar.html" %}
-</br>
-</br>
-</br>
-    <div class="container-fluid">
-      <div class="row">
-          {% include "Data/sidebar_data.html" %}
-        <main class="col-md-10 offset-md-2 pt-3">
-           <h3  class="border-top">Synchronization DB</h3>
-           <form method="POST">
-             {% csrf_token %}
-              <div class="row">
-
-                <div class="form-group col-md-5">
-                  <label for="inputState">Time zone:</label>
-                  {{form.Select}}
-                </div>
-              </div>
-
-
-              <div class="row">
-                <div class="form-group col-md-5">
-                  <label for="Date">Fecha:</label>
-                    {{form.Dates}}
-
-                </div>
-
+<body>
+  {% include "navigationbar.html" %}
+  </br>
+  </br>
+  </br>
+  <div class="container-fluid">
+    <div class="row">
+      {% include "Data/sidebar_data.html" %}
+      <main class="col-md-10 offset-md-2 pt-3">
+        <h3 class="border-top">Synchronization DB</h3>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="form-group col-md-5">
+              <label for="inputState">Time zone:</label>
+              {{form.Select}}
             </div>
+          </div>
 
-              </form>
-
-    <script>
-        $('#Dates').datetimepicker({ footer: true, modal: true });
-    </script>
-    <script type="text/javascript" src="{% static 'js/DataLibrary/jquery-1.11.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/timezones.full.js' %}"></script>
-  <script>
-    $('select').timezones();
-  </script>
-        </main>
-      </div>
+          <div class="row">
+            <div class="form-group col-md-5">
+              <label for="Date">Fecha:</label>
+              {{form.Dates}}
+            </div>
+          </div>
+        </form>
+        <script>
+          $('#Dates').datetimepicker({
+            footer: true,
+            modal: true
+          });
+          $('select').timezones();
+        </script>
+      </main>
     </div>
-    <!-- Icons -->
-    <script type="text/javascript" src="{% static 'js/DataLibrary/feather.min.js' %}"></script>
+  </div>
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+</body>
 
-      <script>
-        feather.replace()
-      </script>
-  </body>
 </html>

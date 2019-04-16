@@ -26,7 +26,7 @@ class wifiConexForm(forms.Form):
 
 class gprsConexForm(forms.Form):
     OPERATOR_CHOICES = (('Claro', 'Claro'),('Movistar', 'Movistar'),('Exito', 'Exito'),('Virgin', 'VirginExito'),('Avantel', 'Avantel'),('Tigo', 'Tigo'))
-    operator=forms.ChoiceField(choices = OPERATOR_CHOICES, required=True, widget=forms.Select(attrs={'class':'form-control', 'id':'card_pin'}))
+    operator=forms.ChoiceField(choices = OPERATOR_CHOICES, required=True, widget=forms.Select(attrs={'class':'form-control', 'id':'operator'}))
     card_pin=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'card_pin', 'placeholder':'Mostrar info'}))
     username=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'username', 'placeholder':'Mostrar info'}))
     password=forms.CharField(max_length=40,widget=forms.PasswordInput(attrs={'class':'form-control', 'id':'password', 'placeholder':'Password'}))
