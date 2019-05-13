@@ -1,4 +1,6 @@
-Django==2.1.7
+Django==2.1.5
+npm==6.4.1
 psycopg2==2.7.7
 psycopg2-binary==1.7.7
 pyserial==3.4
+python==3.5.0

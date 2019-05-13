@@ -22,12 +22,28 @@
         <main class="col-md-10 offset-md-2 pt-3">
           <h1>Perfil de usuario</h1>
           <br>
+
+          <div id="app">
+          </div>
         </main>
       </div>
     </div>
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
+    </script>
+
+    <script type="text/javascript">
+    var data = {
+        list: null
+    };
+    Vue.http.get('/usuario/prueba/')
+    .then(function(response){
+          console.log(response.body);
+        data.list = response.data;
+    }, function(error){
+        console.log(error.statusText);
+    });
     </script>
   </body>
 </html>
