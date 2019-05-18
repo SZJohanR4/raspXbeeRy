@@ -9,31 +9,31 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">RaspXbeeRy</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/conexiones/">Conexiones</a>
+          <a class="nav-link" href="/conexiones/ethernet" name="/conexiones/">Conexiones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/red/">Red</a>
+          <a class="nav-link" href="/red/sensor_inf" name="/red/">Red</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/cloud_conector/">Cloud Conector</a>
+          <a class="nav-link" href="/cloud_conector/" name="/cloud_conector/">Cloud Conector</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/herramientas/">Herramientas</a>
+          <a class="nav-link" href="/herramientas/ping" name="/herramientas/">Herramientas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/sistema/">Sistema</a>
+          <a class="nav-link" href="/sistema/" name="/sistema/">Sistema</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/data/">Data</a>
+          <a class="nav-link" href="/data/get_data" name="/data/">Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/consola/">Consola</a>
+          <a class="nav-link" href="/consola/" name="/consola/">Consola</a>
         </li>
       </ul>
       {% if request.user.is_authenticated %}
