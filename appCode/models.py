@@ -10,18 +10,18 @@ class States_Gateway_Manager(models.Manager):
         cursor.execute("SELECT id AS id_states, name AS name_states FROM appCode_states_gateway;")
         states_set = cursor.fetchall()
         return states_set
-    
+
     def insert_states_gateway(self, name_, description_):
         state = States_Gateway(name = name_, description = description_)
         return state
 
-    
+
 class States_Gateway(models.Model):
     name = models.CharField(max_length = 25, default = 'None', unique = True)
     description = models.CharField(max_length = 100, default = 'None')
     states_manager = States_Gateway_Manager()
-    
-    
+
+
 
 class Gateway_Manager(models.Manager):
     def get_gateways(self):
@@ -35,32 +35,32 @@ class Gateway_Manager(models.Manager):
     def insert_gateways(self, name_, latitude_, longitude_, state_, local_address_, foreing_address_):
         gateway = Gateway(name = name_, latitude = latitude_, longitude = longitude_, state_fk = state_, local_address = local_address_, foreing_address = foreing_address_)
         return gateway
-    
+
     def update_gateway_state(self, id_gateway, new_state):
         cursor = connection.cursor()
         cursor.execute("UPDATE appCode_gateway SET state_fk_id = %s WHERE id = %s;", [new_state, id_gateway])
         gateway = cursor.fetchall()
         return gateway
-    
+
     def update_gateway_location(self, id_gateway, new_latitude, new_longitude):
         cursor = connection.cursor()
         cursor.execute("UPDATE appCode_gateway SET latitude = %s, longitude = %s WHERE id = %s;", [new_latitude, new_longitude, id_gateway])
         gateway = cursor.fetchall()
         return gateway
-    
+
     def update_gateway_local_address(self, id_gateway, new_local):
         cursor = connection.cursor()
         cursor.execute("UPDATE appCode_gateway SET local_address = %s WHERE id = %s;", [new_local, id_gateway])
         gateway = cursor.fetchall()
         return gateway
-    
+
     def update_gateway_foreign_address(self, id_gateway, new_foreign):
         cursor = connection.cursor()
         cursor.execute("UPDATE appCode_gateway SET foreign_address = %s WHERE id = %s;", [new_foreign, id_gateway])
         gateway = cursor.fetchall()
         return gateway
-           
-    
+
+
 class Gateway(models.Model):
     name = models.CharField(max_length = 25, default = 'None', unique = True)
     latitude = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
@@ -81,12 +81,12 @@ class States_Connections_Manager(models.Manager):
         cursor.execute("SELECT id AS id_states, name AS name_states FROM appCode_states_connection;")
         states_set = cursor.fetchall()
         return states_set
-    
+
     def insert_states_gateway(self, name_, description_):
         state = States_Connection(name = name_, description = description_)
         return state
 
-    
+
 class States_Connection(models.Model):
     name = models.CharField(max_length = 25, default = 'None', unique = True)
     description = models.CharField(max_length = 100, default = 'None')
@@ -102,7 +102,7 @@ class States_Node_Manager(models.Manager):
         cursor.execute("SELECT id AS id_states, name AS name_states FROM appCode_states_node;")
         states_set = cursor.fetchall()
         return states_set
-    
+
     def insert_states_node(self, name_, description_):
         state = States_Node(name = name_, description = description_)
         return state
@@ -127,21 +127,15 @@ class Node_Manager(models.Manager):
     def insert_node(self, ip_, temperature_, voltage_, state_, latitude_, longitude_, mac_, address_):
         node = Node(ip = ip_, temperature = temperature_, voltage = voltage_, state_fk = state_, latitude = latitude_, longitude = longitude_, mac = mac_, address = address_)
         return node
-    
 
-class Node(models.Model): 
-    ip = models.CharField(max_length=20, default = 'None', unique = True)
-    state_fk = models.ForeignKey(States_Node, on_delete = models.CASCADE, default = 0)
+
+class Node(models.Model):
+    ip = models.CharField(max_length=20, default = 'None')
+    state_fk = models.ForeignKey(States_Node, on_delete = models.CASCADE, default = 1)
     latitude = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
     longitude = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
-    mac = models.CharField(max_length = 25, default = 'None', unique = True)
-    address_16bits = models.CharField(max_length = 30, default = 'None', unique = True)
-    node_manager = Node_Manager()
-
-    def __str__(self):
-        return ("IP: %s\tTemperature: %s\tVoltage: %s\tState: %s\tLatitude: %s\tLongitude: %s\tMAC: %s\n" % (self.ip, self.temperature, self.voltage, self.state, self.latitude, self.longitude, self.mac))
-
-
+    mac = models.CharField(max_length = 25, default = 'None')
+    address_16bits = models.CharField(max_length = 30, default = 'None')
 
 class Node_Register_Manager(models.Manager):
     def get_node_registers(self):
@@ -150,7 +144,7 @@ class Node_Register_Manager(models.Manager):
                         FROM appCode_node_register INNER JOIN appCode_node ON appCode_node.id = appCode_node_register.node_fk_id;")
         node_set = cursor.fetchall()
         return node_set
-    
+
     def get_registers_by_node(self, node_):
         cursor = connection.cursor()
         cursor.execute("SELECT appCode_node.ip, appCode_node_register.temperature, appCode_node_register.voltage, appCode_node_register.register_date \
@@ -158,7 +152,7 @@ class Node_Register_Manager(models.Manager):
                         WHERE appCpde_node.id = %s;", [node_])
         node_set = cursor.fetchall()
         return node_set
-    
+
     def get_node_registers_by_date(self, date_):
         cursor = connection.cursor()
         cursor.execute("SELECT appCode_node.ip, appCode_node_register.temperature, appCode_node_register.voltage, appCode_node_register.register_date \
@@ -166,7 +160,7 @@ class Node_Register_Manager(models.Manager):
                         WHERE appCode_node_register > %s;", [date_])
         node_set = cursor.fetchall()
         return node_set
-    
+
     def get_node_registers_by_range_date(self, start_date, end_date):
         cursor = connection.cursor()
         cursor.execute("SELECT appCode_node.ip, appCode_node_register.temperature, appCode_node_register.voltage, appCode_node_register.register_date \
@@ -174,11 +168,11 @@ class Node_Register_Manager(models.Manager):
                         WHERE appCode_node_register > %s AND appCode_node_register < %s;", [start_date, end_date])
         node_set = cursor.fetchall()
         return node_set
-    
+
     def insert_node_registers(self, node_ip, temperature_, voltage_):
         node_register = Node_Register(node_fk = node_ip, temperature = temperature_, voltage = voltage_)
         return node_register
-    
+
 
 class Node_Register(models.Model):
     temperature = models.DecimalField(decimal_places = 2, max_digits = 6, default = 0.0)
@@ -190,7 +184,7 @@ class Node_Register(models.Model):
     def __str__(self):
         return ("Node: %s\tDate: %s\tVoltage: %s\tTemperature: %s\n" % (self.node_fk, self.register_date, self.voltage, self.temperature))
 
-    
+
 
 class Node_Gateway_Manager(models.Manager):
     def get_nodes_gateways(self):
@@ -201,7 +195,7 @@ class Node_Gateway_Manager(models.Manager):
                         INNER JOIN appCode_states_connection ON appCode_states_connection.id = appCode_node_gateway.state_fk_id;")
         nodes_set = cursor.fetchall()
         return nodes_set
-    
+
     def get_nodes_by_gateway(self, gateway_):
         cursor = connection.cursor()
         cursor.execute("SELECT appCode_node.ip AS node_ip, appCode_node_gateway.connection_date AS connection_date, appCode_states_connection.name AS state,  \
@@ -211,7 +205,7 @@ class Node_Gateway_Manager(models.Manager):
                         WHERE appCode_node_gateway.gateway_fk_id = %s ;", [gateway_])
         nodes_set = cursor.fetchall()
         return nodes_set
-    
+
     def get_nodes_by_gateway_state(self, gateway_, state_):
         cursor = connection.cursor()
         cursor.execute("SELECT appCode_node.ip AS node_ip, appCode_node_gateway.connection_date AS connection_date, appCode_states_connection.name AS state,  \
@@ -221,7 +215,7 @@ class Node_Gateway_Manager(models.Manager):
                         WHERE appCode_node_gateway.gateway_fk_id = %s AND appCode_node_gateway.state_fk_id = %s;", [gateway_, state_])
         nodes_set = cursor.fetchall()
         return nodes_set
-   
+
     def insert_node_gateway(self, gateway_, node_, state_, connection_):
         node_gateway = Node_Gateway(gateway_fk = gateway_, node_fk = node_, state_fk = state_, connection = connection_)
         return node_gateway
@@ -243,7 +237,7 @@ class Wifi_Protocol_Manager(models.Manager):
         cursor.execute("SELECT id AS id_protocol, name AS name_protocol FROM appCode_wifi_protocol;")
         protocols_set = cursor.fetchall()
         return protocols_set
-    
+
     def insert_wifi_protocol(self, name_, description_):
         protocol = Wifi_Protocol(name = name_, description = description_)
         return protocol
@@ -252,7 +246,7 @@ class Wifi_Protocol_Manager(models.Manager):
 class Wifi_Protocol(models.Model):
     name = models.CharField(max_length = 25, default = 'None', unique = True)
     description = models.CharField(max_length = 100, default = 'None')
-    wifi_protocol_manager = Wifi_Protocol_Manager() 
+    wifi_protocol_manager = Wifi_Protocol_Manager()
 
 
 
@@ -262,7 +256,7 @@ class Wifi_Channel_Manager(models.Manager):
         cursor.execute("SELECT id AS id_channel, name AS name_channel FROM appCode_wifi_channel;")
         channels_set = cursor.fetchall()
         return channels_set
-    
+
     def insert_wifi_channel(self, name_, description_):
         channel = Wifi_Channel(name = name_, description = description_)
         return channel
@@ -271,7 +265,7 @@ class Wifi_Channel_Manager(models.Manager):
 class Wifi_Channel(models.Model):
     name = models.CharField(max_length = 25, default = 'None', unique = True)
     description = models.CharField(max_length = 100, default = 'None')
-    wifi_channel_manager = Wifi_Channel_Manager() 
+    wifi_channel_manager = Wifi_Channel_Manager()
 
 
 
@@ -298,7 +292,7 @@ class Wifi_Gateway_Manager(models.Manager):
                         INNER JOIN appCode_states_connection ON appCode_states_connection.id = appCode_node_gateway.state_fk_id;")
         nodes_set = cursor.fetchall()
         return nodes_set
-    
+
     def insert_wifi_gateway(self, gateway_, wifi_, state_, connection_):
         wifi_gateway = Wifi_Gateway(gateway_fk = gateway_, wifi_fk = wifi_, state_fk = state_, connection = connection_)
         return wifi_gateway
@@ -318,7 +312,7 @@ class States_Simcard_Manager(models.Manager):
         cursor.execute("SELECT id AS id_status, name AS name_status FROM appCode_status_simcard;")
         states_set = cursor.fetchall()
         return states_set
-    
+
     def insert_states_node(self, name_, description_):
         states = States_Simcard(name = name_, description = description_)
         return states
@@ -337,7 +331,7 @@ class Simcard_Operator_Manager(models.Manager):
         cursor.execute("SELECT id AS id_operator, name AS name_status FROM appCode_operator_simcard;")
         operators_set = cursor.fetchall()
         return operators_set
-    
+
     def insert_states_node(self, name_, description_):
         operator = Simcard_Operator(name = name_, description = description_)
         return operator
@@ -371,7 +365,7 @@ class States_Ethernet_Manager(models.Manager):
         cursor.execute("SELECT id AS id_states, name AS name_states FROM appCode_states_ethernet;")
         status_set = cursor.fetchall()
         return status_set
-    
+
     def insert_states_ethernet(self, name_, description_):
         state = States_Ethernet(name = name_, description = description_)
         return state

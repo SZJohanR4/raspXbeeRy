@@ -19,6 +19,8 @@ urlpatterns = [
     path('red/sensor_log', views.sensorLog, name='sensorLog'),
     path('red/sensor_mp', views.sensorMap, name='sensorMap'),
     path('red/nodos_conectados', views.nodosConectados, name='nodosConectados'),
+    path('red/sensor_inf_form/', SensorInfo.as_view(), name='sensor_inf_form'),
+    path('red/get_sensor_inf/', SensorInfo.as_view(), name='get_sensor_inf'),
 
     #cloud conector paths
     path('cloud_conector/', views.cloudConector, name='cloudConector'),

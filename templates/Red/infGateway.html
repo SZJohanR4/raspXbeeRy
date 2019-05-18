@@ -21,55 +21,59 @@
       <div class="row">
         {% include "Red/sidebar_red.html" %}
         <main class="col-md-10 offset-md-2 pt-3">
-          <h1>Sensores Info</h1>
+          <h1>Node Info</h1>
           <br>
-          <form method="POST">
+          <form method="POST" action="sensor_inf_form/">
            {% csrf_token %}
             <div class="row">
                   <div class="form-group col-md-3">
-                    <label for="inputState">Ascii Id:</label>
-                        {{form.ascii}}
+                    <label for="inputState">Ip:</label>
+                        {{form.ip}}
                   </div>
                   <div class="form-group col-md-3">
-                        <label for="inputState">Fields:</label>
-                        {{form.fields}}
+                        <label for="inputState">Latitud:</label>
+                        {{form.latitude}}
                   </div>
                   <div class="form-group col-md-3">
-                      <label for="inputState">Type: </label>
-                      {{form.type}}
-                    </div>
-                  <div class="form-group col-md-2">
-                    <button type="submit" class="btn btn-primary" style="margin-top:28px;">Agregar</button>
+                      <label for="inputState">Longitud: </label>
+                      {{form.longitude}}
                   </div>
+                  <div class="form-group col-md-3">
+                      <label for="inputState">Mac: </label>
+                      {{form.mac}}
+                  </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-primary" style="margin-top:28px;">Agregar</button>
+              </div>
             </div>
           </form>
 <br>
 <br>
-        <h3>Standar</h3>
+        <h3>Data</h3>
         <br>
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="nodes_list_tbl">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Asscii Id</th>
-                  <th scope="col">Fields</th>
-                  <th scope="col">Type</th>
+                  <th scope="col"><span data-feather="bookmark"></span>Ip</th>
+                  <th scope="col"><span data-feather="map-pin"></span>Latitude</th>
+                  <th scope="col"><span data-feather="map-pin"></span>Longitude</th>
+                  <th scope="col"><span data-feather="book"></span>Mac</th>
+                  <th scope="col"><span data-feather="mouse-pointer"></span>Accion</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>val Pueba corto</td>
-                  <td>--------------val Pueba medio----------------</td>
-                  <td>-----------------------------val Pueba long--------------------------</td>
+                {% verbatim %}
+                <tr v-for="nodo in response_data.nodos">
+                  <td>{{ nodo.ip }}</td>
+                  <td>{{ nodo.latitude }}</td>
+                  <td>{{ nodo.longitude }}</td>
+                  <td>{{ nodo.mac }}</td>
+                  <td></td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>val Pueba corto</td>
-                  <td>--------------val Pueba medio----------------</td>
-                  <td>-----------------------------val Pueba long--------------------------</td>
-                </tr>
+                {% endverbatim %}
               </tbody>
             </table>
           </div>
@@ -78,6 +82,7 @@
     </div>
     <!-- Icons -->
     <script type="text/javascript" src="{% static 'js/icons/feather.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/red.js/infGateway.js' %}"></script>
     <script>
       feather.replace()
     </script>

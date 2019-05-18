@@ -33,9 +33,10 @@ class gprsConexForm(forms.Form):
 
 #Red forms
 class sensorRedForm(forms.Form):
-    ascii=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'ascii', 'placeholder':'Mostrar info'}))
-    fields=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'fields', 'placeholder':'Mostrar info'}))
-    type=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'type', 'placeholder':'Mostrar info'}))
+    ip=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'ip', 'placeholder':'Ip'}))
+    latitude=forms.FloatField(widget=forms.NumberInput(attrs={'class':'form-control', 'id':'latitude', 'placeholder':'Latitud'}))
+    longitude=forms.FloatField(widget=forms.NumberInput(attrs={'class':'form-control', 'id':'longitude', 'placeholder':'Longitud'}))
+    mac=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'mac', 'placeholder':'Mac'}))
 
 class ziggbeeRedForm(forms.Form):
     gateway=forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control', 'id':'gateway', 'placeholder':'Mostrar info'}))
