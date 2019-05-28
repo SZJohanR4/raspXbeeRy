@@ -34,15 +34,19 @@
     </script>
 
     <script type="text/javascript">
-    var data = {
-        list: null
-    };
-    Vue.http.get('/usuario/prueba/')
-    .then(function(response){
-          console.log(response.body);
-        data.list = response.data;
-    }, function(error){
-        console.log(error.statusText);
+    const app = new Vue({
+        el: "#app",
+        data: {
+          response_data: [],
+        },
+        methods: {},
+        mounted() {
+          fetch("model_predict/")
+            .then(response => response.json())
+            .then((data) => {
+              this.response_data = data;
+            })
+        },
     });
     </script>
   </body>

@@ -40,4 +40,7 @@ urlpatterns = [
 
     path('consola/', views.consola, name='consola'),
     path('consola/comando', views.comando, name='comando'),
+
+    #Data Science
+    path('usuario/model_predict/', CreateDataset.as_view(), name='get_model_predict'),
 ]
