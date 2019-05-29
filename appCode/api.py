@@ -10,6 +10,7 @@ from .models import Node
 #data Science
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 class SensorInfo(APIView):
@@ -51,36 +52,45 @@ class SensorInfo(APIView):
         return render(request, 'Red/infGateway.html',{"form":sensorRedForm})
 
 class CreateDataset(APIView):
-    def get(self, request):
-
+    def get_data_frame(self):
         # Create the pandas DataFrame
         df_node_1 = pd.DataFrame()
-        df_node_1['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_1['Nodo'] = 1
+        #df_node_1['Date'] = pd.date_range('20180101', periods=1000)
         df_node_1['Velocidad_Cauce'] = np.random.randint(1,4, size=1000)
+        df_node_1['Nodo'] = 1
         df_node_1['Area_Cauce'] = 4
         df_node_1['Caudal'] = df_node_1['Velocidad_Cauce']*df_node_1['Area_Cauce']
-        df_node_1['Lluvia'] = 4
+        df_node_1['Lluvia'] = np.random.randint(0,5, size=1000)
 
 
         df_node_2 = pd.DataFrame()
-        df_node_2['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_2['Nodo'] = 2
+        #df_node_2['Date'] = pd.date_range('20180101', periods=1000)
         df_node_2['Velocidad_Cauce'] = np.random.randint(1,4, size=1000)
+        df_node_2['Nodo'] = 2
         df_node_2['Area_Cauce'] = 6
         df_node_2['Caudal'] = df_node_2['Velocidad_Cauce']*df_node_2['Area_Cauce']
-        df_node_2['Lluvia'] = 4
+        df_node_2['Lluvia'] = np.random.randint(0,5, size=1000)
 
 
         df_node_3 = pd.DataFrame()
-        df_node_3['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_3['Nodo'] = 3
+        #df_node_3['Date'] = pd.date_range('20180101', periods=1000)
         df_node_3['Velocidad_Cauce'] = np.random.randint(1,4, size=1000)
+        df_node_3['Nodo'] = 3
         df_node_3['Area_Cauce'] = 6
         df_node_3['Caudal'] = df_node_3['Velocidad_Cauce']*df_node_3['Area_Cauce']
-        df_node_3['Lluvia'] = 4
+        df_node_3['Lluvia'] = np.random.randint(0,5, size=1000)
 
         df_node_result = pd.concat([df_node_1, df_node_2, df_node_3])
-        print (df_node_result)
         print(df_node_result.describe())
+        return df_node_result
+
+    def get(self, request):
+        df = self.get_data_frame()
+        plt.scatter(df['Velocidad_Cauce'], df['Area_Cauce'], label = 'data1', color='red')
+        plt.scatter(df['Caudal'], df['Lluvia'], label = 'data1', color='blue')
+        plt.title('Grafico de dispercion')
+        plt.xlabel('Eje X')
+        plt.ylabel('Eje Y')
+        plt.legend()
+        plt.show()
         return HttpResponse("Running data")
