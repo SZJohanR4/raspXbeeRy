@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'raspXbeeRy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'raspXbeeDB',
+        'NAME': 'raspxbeedb',
         'USER': 'postgres',
-        'PASSWORD': 'uniminuto',
+        'PASSWORD': 'ticsocial',
         'HOST':'127.0.0.1',
         'PORT': 5432,
     }

@@ -97,18 +97,17 @@ class CreateDataset(APIView):
         plt.show()
 
     def get(self, request):
-        df_ent = self.get_data_frame()
-        df_test = self.get_data_frame()
+        df = self.get_data_frame()
         #self.print_df(df_ent)
         boston = load_boston()
         #print(df_test['Caudal'].values.reshape(-1,1),"########&&&&######", type(df_test.values))
-        X_ent, X_test, y_ent, y_test = train_test_split(df_test['Caudal'].values.reshape(-1,1),df_test['Lluvia'].values.reshape(-1,1))
+        X_ent, X_test, y_ent, y_test = train_test_split(df['Velocidad_Cauce'].values.reshape(-1,1),df['Area_Cauce'].values.reshape(-1,1))
 
         rl = LinearRegression()
-        a = rl.fit(X_ent, y_ent)
-        print(a)
-        b= rl.score(X_test,y_test)
-        print("####################### ",b," ###################")
+        fit = rl.fit(X_ent, y_ent)
+        print(fit)
+        score = rl.score(X_test,y_test)
+        print("####################### ",score," ###################")
         """
         caudal_y_pred = rl.predict(df_test['Caudal'].values.reshape(1,-1))
         print(caudal_y_pred,"#$$$$$##$$")
@@ -120,4 +119,9 @@ class CreateDataset(APIView):
         plt.show()
         print(a,"#############")
         """
-        return HttpResponse("Running data")
+        df = df.reset_index()
+        df = df.to_json()
+        print (df,"##############/////###################3")
+        response = {'status': "OK FROM SERVER",
+                    'df': df, 'score':score}
+        return JsonResponse(response, safe=False)

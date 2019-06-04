@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <meta charset="utf-8">
     {% load static %}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
@@ -13,7 +12,7 @@
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <link href="{% static 'css/consola/jquery.terminal-2.2.0.min.css' %}" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="{% static 'js/consola/jquery.terminal-2.2.0.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/consola/consola.js' %}"></script>
+
 
     <title>Consola RaspXbee</title>
   </head>
@@ -25,6 +24,7 @@
     <br>
     <div id="terminal">
     </div>
-    {% include "footer.html" %}
+
+    <script type="text/javascript" src="{% static 'js/consola/consola.js' %}"></script>
   </body>
 </html>
