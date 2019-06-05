@@ -11,7 +11,7 @@ jQuery(function($, undefined) {
                 dataType: 'json',
                 success: function(data) {
                   this_terminal.echo("--> DataFrame <-- ")
-                  this_terminal.echo(data.df)
+                  //this_terminal.echo(data.df)
                   this_terminal.echo("--> Score: <-- ")
                   this_terminal.echo(data.score)
                   console.log(data);

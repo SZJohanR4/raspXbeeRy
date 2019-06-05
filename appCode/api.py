@@ -58,29 +58,29 @@ class CreateDataset(APIView):
         # Create the pandas DataFrame
         df_node_1 = pd.DataFrame()
         #df_node_1['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_1['Velocidad_Cauce'] = np.random.uniform(1,4,10)
+        df_node_1['Velocidad_Cauce'] = np.random.uniform(1,4,70)
         df_node_1['Nodo'] = 1
         df_node_1['Area_Cauce'] = 4
         df_node_1['Caudal'] = df_node_1['Velocidad_Cauce']*df_node_1['Area_Cauce']
-        df_node_1['Lluvia'] = np.random.uniform(0,5,10)
+        df_node_1['Lluvia'] = np.random.uniform(0,5,70)
 
 
         df_node_2 = pd.DataFrame()
         #df_node_2['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_2['Velocidad_Cauce'] = np.random.uniform(1,4,10)
+        df_node_2['Velocidad_Cauce'] = np.random.uniform(1,4,70)
         df_node_2['Nodo'] = 2
         df_node_2['Area_Cauce'] = 6
         df_node_2['Caudal'] = df_node_2['Velocidad_Cauce']*df_node_2['Area_Cauce']
-        df_node_2['Lluvia'] = np.random.uniform(0,5,10)
+        df_node_2['Lluvia'] = np.random.uniform(0,5,70)
 
 
         df_node_3 = pd.DataFrame()
         #df_node_3['Date'] = pd.date_range('20180101', periods=1000)
-        df_node_3['Velocidad_Cauce'] = np.random.uniform(1,4,10)
+        df_node_3['Velocidad_Cauce'] = np.random.uniform(1,4,70)
         df_node_3['Nodo'] = 3
         df_node_3['Area_Cauce'] = 6
         df_node_3['Caudal'] = df_node_3['Velocidad_Cauce']*df_node_3['Area_Cauce']
-        df_node_3['Lluvia'] = np.random.uniform(0,5, 10)
+        df_node_3['Lluvia'] = np.random.uniform(0,5, 70)
 
         df_node_result = pd.concat([df_node_1, df_node_2, df_node_3])
         print(df_node_result)
@@ -98,27 +98,26 @@ class CreateDataset(APIView):
 
     def get(self, request):
         df = self.get_data_frame()
-        #self.print_df(df_ent)
+        self.print_df(df)
         boston = load_boston()
-        #print(df_test['Caudal'].values.reshape(-1,1),"########&&&&######", type(df_test.values))
-        X_ent, X_test, y_ent, y_test = train_test_split(df['Velocidad_Cauce'].values.reshape(-1,1),df['Area_Cauce'].values.reshape(-1,1))
+
+        X_ent, X_test, y_ent, y_test = train_test_split(df['Caudal'].values.reshape(-1,1),df['Lluvia'].values.reshape(-1,1))
 
         rl = LinearRegression()
         fit = rl.fit(X_ent, y_ent)
         print(fit)
         score = rl.score(X_test,y_test)
         print("####################### ",score," ###################")
-        """
-        caudal_y_pred = rl.predict(df_test['Caudal'].values.reshape(1,-1))
-        print(caudal_y_pred,"#$$$$$##$$")
-        plt.scatter(df_test['Caudal'], df_test['Lluvia'], color = 'black')
-        plt.plot(df_test['Caudal'].values.reshape(1,-1), caudal_y_pred, color = 'blue')
+
+        caudal_y_pred = rl.predict(X_test)
+        plt.scatter(X_test, y_test, color = 'black')
+        plt.plot(X_test, caudal_y_pred, color = 'blue')
         plt.xlabel('Eje X')
         plt.ylabel('Eje Y')
         plt.legend()
         plt.show()
-        print(a,"#############")
-        """
+
+
         df = df.reset_index()
         df = df.to_json()
         print (df,"##############/////###################3")
