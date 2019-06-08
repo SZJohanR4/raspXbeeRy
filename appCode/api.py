@@ -1,3 +1,4 @@
+from datetime import date
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, StreamingHttpResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -5,6 +6,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 
 from .forms import sensorRedForm
+from .models import Cauce
 from .models import Node
 
 #data Science
@@ -85,7 +87,16 @@ class CreateDataset(APIView):
         df_node_result = pd.concat([df_node_1, df_node_2, df_node_3])
         print(df_node_result)
         #print(df_node_result.describe())
+        self.save_data(df_node_result)
         return df_node_result
+
+    def save_data(self, df):
+        for row in df.values:
+            cauce = Cauce(velocidad = row[0], nodo = Node.objects.get(pk = row[1]),
+            area = row[2], cauce = row[3], lluvia = row[4], fecha = date.today(),
+            status = 1)
+            cauce.save()
+
 
     def print_df(self, df):
         plt.scatter(df['Caudal'], df['Area_Cauce'], label = 'data1', color='red')
@@ -107,7 +118,6 @@ class CreateDataset(APIView):
         fit = rl.fit(X_ent, y_ent)
         print(fit)
         score = rl.score(X_test,y_test)
-        print("####################### ",score," ###################")
 
         caudal_y_pred = rl.predict(X_test)
         plt.scatter(X_test, y_test, color = 'black')
@@ -120,7 +130,6 @@ class CreateDataset(APIView):
 
         df = df.reset_index()
         df = df.to_json()
-        print (df,"##############/////###################3")
         response = {'status': "OK FROM SERVER",
                     'df': df, 'score':score}
         return JsonResponse(response, safe=False)

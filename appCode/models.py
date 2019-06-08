@@ -137,6 +137,15 @@ class Node(models.Model):
     mac = models.CharField(max_length = 25, default = 'None')
     address_16bits = models.CharField(max_length = 30, default = 'None')
 
+class Cauce(models.Model):
+    velocidad = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
+    area = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
+    cauce = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
+    lluvia = models.DecimalField(decimal_places = 6, max_digits = 10, default = 0.0)
+    fecha = models.DateField()
+    status = models.BooleanField(max_length = 25, default = 'None')
+    nodo = models.ForeignKey(Node, on_delete = models.CASCADE)
+
 class Node_Register_Manager(models.Manager):
     def get_node_registers(self):
         cursor = connection.cursor()
