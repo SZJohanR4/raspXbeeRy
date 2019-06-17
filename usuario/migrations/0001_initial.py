@@ -1,6 +1,6 @@
 # Created by L.S. Urrea [lurreaferia@uniminuto.edu.co], J. Sanchez-Rojas [jsanchezro8@uniminuto.edu.co], & C.A.Sierra [carlos.andres.sierra.v@gmail.com] on May 2019.
 
-# Collaboration acknowlegments: María Fernanda Chaparro & Fernando & Santiago Salazar.
+# Collaboration acknowlegments: María Fernanda Chaparro & Fernando Alvarez Alvarez & Santiago Salazar.
 
 # Copyright (c) 2019 L.S. Urrea, J. Sanchez-Rojas, & C.A.Sierra. Research Group on Athenea. All rights reserved.
 
